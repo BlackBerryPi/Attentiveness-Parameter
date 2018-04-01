@@ -10,13 +10,13 @@ DrawWidget::DrawWidget(QWidget *parent) : QWidget(parent)
     top = 0;
     t_points.push_back(0);
     setWindowTitle("Monitor");
-    setFixedSize(MAX_ITEM+1, 500);
+    setFixedSize(MAX_ITEM, 500);
 }
 
 void DrawWidget::setData(int d)
 {
 
-    if(top<MAX_ITEM)
+    if(top<MAX_ITEM+5)
     {
         t_points.push_back(d);
         top++;
@@ -48,7 +48,7 @@ void DrawWidget::paintEvent(QPaintEvent *e)
         {
             continue;
         }
-        p.drawLine(i, height()+(*(it-1)), i+1, height()+(*it));
+        p.drawLine(i-5, height()+(*(it-1)), i-4, height()+(*it));
         i++;
     }
 }

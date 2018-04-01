@@ -57,9 +57,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(638, 700);
+        MainWindow->resize(524, 700);
         MainWindow->setMinimumSize(QSize(520, 700));
-        MainWindow->setMaximumSize(QSize(638, 700));
+        MainWindow->setMaximumSize(QSize(524, 700));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -141,7 +141,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 638, 26));
+        menuBar->setGeometry(QRect(0, 0, 524, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
