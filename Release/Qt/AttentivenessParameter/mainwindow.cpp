@@ -15,11 +15,14 @@ MainWindow::MainWindow(QWidget *parent) :
     for (const QSerialPortInfo &info : infos)
         ui->serialPortComboBox->addItem(info.portName());
 
-    setWindowTitle(tr("Seial Painter"));
+    setWindowTitle(tr("AttentivenessParameter"));
     ui->serialPortComboBox->setFocus();
 
     tempWidget = new DrawWidget(ui->tempTab);
     resistWidget = new DrawWidget(ui->resistTab);
+    gyroXWidget = new DrawWidget(ui->GyroXTab);
+    gyroYWidget = new DrawWidget(ui->GyroYTab);
+    gyroZWidget = new DrawWidget(ui->GyroZTab);
 
     connect(ui->runButton, &QPushButton::clicked, this, &MainWindow::startSlave);
     connect(&m_thread, &SlaveThread::request, this,&MainWindow::showRequest);
@@ -59,12 +62,12 @@ void MainWindow::startSlave()
 
 void MainWindow::showRequest(const QString &s)
 {
-    ui->trafficLabel->setText(tr("Traffic, transaction #%1:"
-                               "\n\r-request: %2"
-                               "\n\r-response: %3")
-                            .arg(++m_transactionCount)
-                            .arg(s)
-                            .arg(""));
+//    ui->trafficLabel->setText(tr("Traffic, transaction #%1:"
+//                               "\n\r-request: %2"
+//                               "\n\r-response: %3")
+//                            .arg(++m_transactionCount)
+//                            .arg(s)
+//                            .arg(""));
 
     //qDebug() << "Request: "<< tr("%1").arg(s);
     qDebug() << "Receives: " << s;
@@ -73,14 +76,26 @@ void MainWindow::showRequest(const QString &s)
 
     for(QStringList::iterator it = sList.begin(); it != sList.end(); it++)
     {
-        qDebug() << "split " << (*it);
         if(!((*it).mid(0,1).compare("T")))
         {
-            tempWidget->setData(100-(2*((*it).mid(1).toInt())));
+            qDebug() << "T" << *(it);
+            tempWidget->setData(((*it).mid(1).toInt()));
         }
         else if(!((*it).mid(0,1).compare("R")))
         {
-            resistWidget->setData(100-(2*((*it).mid(1).toInt())));
+            resistWidget->setData(((*it).mid(1).toInt()));
+        }
+        else if(!((*it).mid(0,1).compare("X")))
+        {
+            gyroXWidget->setData(((*it).mid(1).toInt())/2);
+        }
+        else if(!((*it).mid(0,1).compare("Y")))
+        {
+            gyroYWidget->setData(((*it).mid(1).toInt())/2);
+        }
+        else if(!((*it).mid(0,1).compare("Z")))
+        {
+            gyroZWidget->setData(((*it).mid(1).toInt())/2);
         }
     }
 

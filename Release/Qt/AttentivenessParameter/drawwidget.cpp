@@ -48,7 +48,7 @@ void DrawWidget::paintEvent(QPaintEvent *e)
         {
             continue;
         }
-        p.drawLine(i-5, height()+(*(it-1)), i-4, height()+(*it));
+        p.drawLine(i-5, height()-(*(it-1)), i-4, height()-(*it));
         i++;
     }
 }

@@ -43,7 +43,9 @@ private:
 
     DrawWidget *tempWidget = nullptr;
     DrawWidget *resistWidget = nullptr;
-    DrawWidget *acceleroMeterWidget = nullptr;
+    DrawWidget *gyroXWidget = nullptr;
+    DrawWidget *gyroYWidget = nullptr;
+    DrawWidget *gyroZWidget = nullptr;
 };
 
 #endif // MAINWINDOW_H

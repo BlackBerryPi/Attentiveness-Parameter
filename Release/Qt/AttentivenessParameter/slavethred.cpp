@@ -1,11 +1,22 @@
 #include "slavethread.h"
 #include <QSerialPort>
 #include <QTime>
+#include <QDateTime>
 #include <QDebug>
 
 SlaveThread::SlaveThread(QObject *parent) :
     QThread(parent)
 {
+    logFile = new QFile("\Data.txt");
+
+    if(!logFile->open(QIODevice::Append | QIODevice::Text))
+    {
+        qDebug()<<"打开失败";
+    }
+    else
+    {
+        qDebug()<<"打开成功";
+    }
 }
 
 //! [0]
@@ -76,7 +87,11 @@ void SlaveThread::run()
             serial.write(responseData);
             if (serial.waitForBytesWritten(m_waitTimeout)) {
 //                const QString request = QString::fromUtf8(requestData);
-                const QString request = QString(requestData);
+                QString s = QString(requestData);
+                const QString request = s.mid(s.indexOf(';'), s.lastIndexOf(';')-s.indexOf(';'));
+
+                QTextStream logOut(logFile);
+                logOut << QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss.zzz ddd")+" " << request << "\n";
 //! [12]
                 emit this->request(request);
 //                qDebug() << "Request: " << request;

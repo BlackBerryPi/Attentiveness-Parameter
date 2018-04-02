@@ -113,7 +113,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tempTab">
          <attribute name="title">
@@ -123,6 +123,21 @@
         <widget class="QWidget" name="resistTab">
          <attribute name="title">
           <string>Resist</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="GyroXTab">
+         <attribute name="title">
+          <string>GyroX</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="GyroYTab">
+         <attribute name="title">
+          <string>GyroY</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="GyroZTab">
+         <attribute name="title">
+          <string>GyroZ</string>
          </attribute>
         </widget>
        </widget>

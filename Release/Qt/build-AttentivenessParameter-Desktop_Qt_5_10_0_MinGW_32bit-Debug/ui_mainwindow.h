@@ -49,6 +49,9 @@ public:
     QTabWidget *tabWidget;
     QWidget *tempTab;
     QWidget *resistTab;
+    QWidget *GyroXTab;
+    QWidget *GyroYTab;
+    QWidget *GyroZTab;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -132,6 +135,15 @@ public:
         resistTab = new QWidget();
         resistTab->setObjectName(QStringLiteral("resistTab"));
         tabWidget->addTab(resistTab, QString());
+        GyroXTab = new QWidget();
+        GyroXTab->setObjectName(QStringLiteral("GyroXTab"));
+        tabWidget->addTab(GyroXTab, QString());
+        GyroYTab = new QWidget();
+        GyroYTab->setObjectName(QStringLiteral("GyroYTab"));
+        tabWidget->addTab(GyroYTab, QString());
+        GyroZTab = new QWidget();
+        GyroZTab->setObjectName(QStringLiteral("GyroZTab"));
+        tabWidget->addTab(GyroZTab, QString());
 
         horizontalLayout->addWidget(tabWidget);
 
@@ -152,7 +164,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -168,6 +180,9 @@ public:
         runButton->setText(QApplication::translate("MainWindow", "Start", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tempTab), QApplication::translate("MainWindow", "Temp", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(resistTab), QApplication::translate("MainWindow", "Resist", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(GyroXTab), QApplication::translate("MainWindow", "GyroX", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(GyroYTab), QApplication::translate("MainWindow", "GyroY", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(GyroZTab), QApplication::translate("MainWindow", "GyroZ", nullptr));
     } // retranslateUi
 
 };

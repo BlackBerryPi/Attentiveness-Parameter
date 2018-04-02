@@ -4,6 +4,7 @@
 #include <QMutex>
 #include <QThread>
 #include <QWaitCondition>
+#include <QFile>
 
 class SlaveThread : public QThread
 {
@@ -28,6 +29,8 @@ private:
     int m_waitTimeout = 0;
     QMutex m_mutex;
     bool m_quit = false;
+
+    QFile *logFile;
 };
 //! [0]
 #endif // SLAVETHREAD_H
